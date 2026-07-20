@@ -619,6 +619,41 @@
             .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
             .section { padding: 56px 0; }
         }
+
+        /* Floating Action Button (FAB) untuk Cek Skill */
+        .fab-evaluasi {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #a7f3d0;
+            border: 3px solid #111827;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 6px 6px 0px #111827;
+            z-index: 1000;
+            transition: all var(--transition);
+            text-decoration: none;
+            color: #111827;
+        }
+        .fab-evaluasi:hover {
+            background: #fef08a;
+            transform: translate(2px, 2px);
+            box-shadow: 4px 4px 0px #111827;
+        }
+        @media (max-width: 600px) {
+            .fab-evaluasi {
+                bottom: 20px;
+                right: 20px;
+                width: 60px;
+                height: 60px;
+                font-size: 24px;
+            }
+        }
     </style>
 
     @stack('styles')
@@ -697,11 +732,9 @@
                 </li>
             </ul>
 
-            <!-- Right Actions -->
+            <!-- Right Actions (Empty, replaced by FAB) -->
             <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
-                <a href="{{ route('evaluasi') }}" class="nav-cta">
-                    📝 Cek Skill
-                </a>
+                <!-- Tombol Cek Skill sudah dipindah ke pojok kanan bawah -->
             </div>
 
             <!-- Hamburger -->
@@ -794,6 +827,11 @@
             </div>
         </div>
     </footer>
+
+    <!-- Floating Action Button: Cek Skil -->
+    <a href="{{ route('evaluasi') }}" class="fab-evaluasi" title="Cek Skill (Evaluasi)">
+        📝
+    </a>
 
     <script>
         // Navbar scroll effect
