@@ -233,7 +233,7 @@
                     <div class="info-icon">📍</div>
                     <div>
                         <div style="font-size:12px; opacity:0.8; margin-bottom:2px;">Lokasi Kami</div>
-                        <div>Balai Desa Pakuhaji, Jawa Barat</div>
+                        <div>Cilandesan rt3/rw1, Desa Pakuhaji, Kecamatan Cisalak, Kabupaten Subang Jawa Barat</div>
                     </div>
                 </div>
                 
