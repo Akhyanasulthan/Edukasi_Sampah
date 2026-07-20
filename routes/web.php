@@ -76,3 +76,8 @@ Route::get('/setup-admin-sekali-saja', function () {
     );
     return 'Berhasil! Akun admin berhasil dibuat. Silakan buka halaman /admin/login untuk masuk.';
 });
+
+Route::get('/setup-database-sekarang', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true, '--force' => true]);
+    return 'Berhasil! Database sudah di-reset, tabel diperbarui, dan akun admin (admin@admin.com, password: password) sudah dibuat otomatis! Silakan kembali ke /admin/login';
+});
