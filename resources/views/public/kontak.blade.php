@@ -241,7 +241,7 @@
                     <div class="info-icon">✉️</div>
                     <div>
                         <div style="font-size:12px; opacity:0.8; margin-bottom:2px;">Email Resmi</div>
-                        <div>knpakuhaji_2026@edusampah.desa.id</div>
+                        <div>kknpakuhaji2026@gmail.com</div>
                     </div>
                 </div>
 
