@@ -5,34 +5,63 @@
 <style>
     /* ── HERO TIPS ── */
     .hero-tips {
-        background: radial-gradient(circle at 100% 100%, #ecfdf5 0%, #ffffff 60%);
-        padding: 100px 0 60px;
+        background: linear-gradient(135deg, #fef08a 0%, #f59e0b 100%);
+        padding: 120px 0 100px;
         position: relative;
         overflow: hidden;
         text-align: center;
         border-bottom: 1px solid #f3f4f6;
     }
 
+    .hero-tips::before {
+        content: "💡";
+        font-size: 80px;
+        position: absolute;
+        top: 20%; left: 8%;
+        opacity: 0.5;
+        transform: rotate(-15deg);
+        animation: floatTilt 5s ease-in-out infinite;
+    }
+    .hero-tips::after {
+        content: "🌿";
+        font-size: 80px;
+        position: absolute;
+        bottom: 25%; right: 10%;
+        opacity: 0.4;
+        animation: floatTilt 4s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatTilt {
+        0%, 100% { transform: translateY(0) rotate(-15deg); }
+        50% { transform: translateY(-20px) rotate(-5deg); }
+    }
+
     .hero-tips-title {
         font-family: 'Nunito', sans-serif;
-        font-size: clamp(36px, 5vw, 56px);
+        font-size: clamp(40px, 6vw, 64px);
         font-weight: 900;
-        color: #111827;
+        color: #78350f;
         margin-bottom: 16px;
+        text-shadow: 2px 2px 0px rgba(255,255,255,0.4);
     }
 
     .hero-tips-title span {
-        background: linear-gradient(135deg, #059669, #34d399);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: #ffffff;
+        background: #d97706;
+        padding: 4px 16px;
+        border-radius: 16px;
+        display: inline-block;
+        transform: rotate(2deg);
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
     }
 
     .hero-tips-desc {
-        font-size: 18px;
-        color: #6b7280;
+        font-size: 19px;
+        color: #78350f;
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
+        font-weight: 600;
     }
 
     /* ── TIPS GRID ── */
@@ -47,18 +76,18 @@
         background: white;
         border-radius: 24px;
         overflow: hidden;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid #f3f4f6;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 3px solid #f3f4f6;
+        box-shadow: 4px 4px 0px #e5e7eb;
         display: flex;
         flex-direction: column;
         cursor: pointer;
     }
 
     .tip-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 30px -10px rgba(5, 150, 105, 0.15);
-        border-color: #a7f3d0;
+        transform: translateY(-6px);
+        box-shadow: 8px 8px 0px #fde68a;
+        border-color: #fbbf24;
     }
 
     .tip-img-wrapper {
@@ -110,7 +139,7 @@
     }
 
     .tip-card:hover .tip-title {
-        color: #059669;
+        color: #d97706;
     }
 
     .tip-body {
@@ -129,13 +158,22 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        color: #059669;
+        color: #d97706;
         font-weight: 800;
-        font-size: 14px;
+        font-size: 15px;
         text-transform: uppercase;
         letter-spacing: 0.5px;
+        background: #fef3c7;
+        padding: 10px 16px;
+        border-radius: 12px;
+        width: fit-content;
+        transition: all 0.3s;
     }
 
+    .tip-card:hover .read-more-wrapper {
+        background: #f59e0b;
+        color: #fff;
+    }
     .read-more-wrapper span {
         transition: transform 0.3s;
     }
@@ -153,10 +191,12 @@
         color: #059669;
     }
 
-    /* ── CTA ── */
+    /* ── BRUTAL CTA ── */
     .modern-cta {
-        background: #111827;
-        border-radius: 32px;
+        background: #93c5fd;
+        border: 4px solid #111827;
+        box-shadow: 10px 10px 0px #111827;
+        border-radius: 24px;
         padding: 60px 40px;
         text-align: center;
         position: relative;
@@ -164,23 +204,22 @@
     }
 
     .modern-cta::before {
-        content: '';
+        content: '🤫';
         position: absolute;
-        width: 300px; height: 300px;
-        background: #059669;
-        border-radius: 50%;
-        filter: blur(80px);
-        top: -150px; left: -50px;
-        opacity: 0.5;
+        font-size: 120px;
+        top: -20px; left: -10px;
+        opacity: 0.2;
+        transform: rotate(-15deg);
     }
 
     .modern-cta-title {
         font-family: 'Nunito', sans-serif;
-        font-size: 32px;
+        font-size: clamp(32px, 5vw, 42px);
         font-weight: 900;
-        color: white;
+        color: #111827;
         margin-bottom: 16px;
         position: relative; z-index: 2;
+        text-shadow: 3px 3px 0px white;
     }
 
 </style>
@@ -191,12 +230,12 @@
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero-tips">
     <div class="container" style="position:relative; z-index:2;">
-        <div style="display:inline-block; background:#ecfdf5; color:#059669; font-weight:800; font-size:14px; padding:6px 16px; border-radius:20px; margin-bottom:20px;">LIFE HACKS LINGKUNGAN</div>
+        <div style="display:inline-block; background:#fff; color:#d97706; font-weight:900; font-size:15px; padding:8px 20px; border-radius:100px; margin-bottom:20px; box-shadow: 2px 2px 0px rgba(0,0,0,0.1);">💡 HACKS SEHARI-HARI</div>
         <h1 class="hero-tips-title">
             Tips & Trik <span>Zero-Waste</span>
         </h1>
         <p class="hero-tips-desc">
-            Temukan panduan praktis dan ide-ide kreatif untuk mengelola sampah dan menerapkan gaya hidup ramah lingkungan setiap harinya.
+            Mau bantu bumi tapi males ribet? Santai, di sini banyak contekan life hacks kece buat ngurangin sampah tanpa pusing. Coba cek yang mana yang paling pas buat lu! 🌿✨
         </p>
     </div>
 </section>
@@ -207,7 +246,7 @@
         @if($tips->count() > 0)
             <div class="tips-grid">
                 @foreach($tips as $tip)
-                <div class="tip-card" onclick="alert('Fitur baca selengkapnya akan diimplementasikan nanti!');">
+                <a href="{{ route('tips.show', $tip->slug) }}" class="tip-card" style="text-decoration: none; color: inherit;">
                     <div class="tip-img-wrapper">
                         <div class="tip-badge">{{ $tip->created_at->format('d M Y') }}</div>
                         @if($tip->image_path)
@@ -225,7 +264,7 @@
                             Baca Selengkapnya <span>→</span>
                         </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
         @else
@@ -236,13 +275,13 @@
             </div>
         @endif
 
-        <!-- ── CTA SECTION ────────────────────────────────────────────── -->
+        <!-- ── BRUTAL CTA ────────────────────────────────────────────── -->
         <div class="modern-cta">
-            <h2 class="modern-cta-title">Punya Tips Ramah Lingkungan Sendiri?</h2>
-            <p style="font-size:16px; color:#9ca3af; max-width:500px; margin: 0 auto 30px; position:relative; z-index:2;">Bagikan *life hacks* andalanmu dalam mengurangi sampah dengan mengirim pesan ke tim EduSampah!</p>
+            <h2 class="modern-cta-title">Punya Life Hacks Sendiri? 🤫</h2>
+            <p style="font-size:18px; color:#111827; font-weight:700; max-width:550px; margin: 0 auto 30px; position:relative; z-index:2; line-height: 1.6;">Jangan pelit ilmu dong! Spill trik rahasia kamu buat ngolah sampah ke mimin, biar bisa dicoba temen-temen lain.</p>
             <div style="position:relative; z-index:2; display:flex; justify-content:center;">
-                <a href="{{ route('kontak') }}" style="background:#059669; color:white; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4); transition: transform 0.3s;">
-                    ✉️ Hubungi Kami
+                <a href="{{ route('kontak') }}" style="background:#fef08a; color:#111827; padding:16px 32px; border-radius:100px; font-weight:900; font-size: 18px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border: 3px solid #111827; box-shadow: 5px 5px 0px #111827; transition: all 0.2s;" onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='7px 7px 0px #111827';" onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='5px 5px 0px #111827';">
+                    📩 Spill Trik Kamu!
                 </a>
             </div>
         </div>

@@ -5,31 +5,64 @@
 <style>
     /* ── HERO KONTAK ── */
     .hero-kontak {
-        background: radial-gradient(circle at 50% 100%, #ecfdf5 0%, #ffffff 60%);
-        padding: 100px 0 160px; /* Extra bottom padding to overlap card */
+        background: linear-gradient(135deg, #a5b4fc 0%, #4f46e5 100%);
+        padding: 120px 0 100px;
         position: relative;
         overflow: hidden;
         text-align: center;
+        border-bottom: 2px solid #111827;
+    }
+
+    .hero-kontak::before {
+        content: "👋";
+        font-size: 80px;
+        position: absolute;
+        top: 20%; left: 10%;
+        opacity: 0.5;
+        transform: rotate(-15deg);
+        animation: floatTilt 5s ease-in-out infinite;
+    }
+    .hero-kontak::after {
+        content: "💬";
+        font-size: 80px;
+        position: absolute;
+        bottom: 25%; right: 12%;
+        opacity: 0.4;
+        animation: floatTilt 4s ease-in-out infinite reverse;
+    }
+
+    @keyframes floatTilt {
+        0%, 100% { transform: translateY(0) rotate(-15deg); }
+        50% { transform: translateY(-20px) rotate(-5deg); }
     }
 
     .hero-kontak-title {
         font-family: 'Nunito', sans-serif;
-        font-size: clamp(36px, 5vw, 56px);
+        font-size: clamp(40px, 6vw, 64px);
         font-weight: 900;
-        color: #111827;
+        color: #ffffff;
         margin-bottom: 16px;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
     }
 
     .hero-kontak-title span {
-        color: #059669;
+        color: #ffffff;
+        background: #111827;
+        padding: 4px 16px;
+        border-radius: 16px;
+        display: inline-block;
+        transform: rotate(-2deg);
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
     }
 
     .hero-kontak-desc {
-        font-size: 18px;
-        color: #6b7280;
+        font-size: 19px;
+        color: #e0e7ff;
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
+        font-weight: 600;
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
     }
 
     /* ── CONTACT SECTION ── */
@@ -45,8 +78,8 @@
         grid-template-columns: 1fr 1.5fr;
         background: white;
         border-radius: 32px;
-        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
-        border: 1px solid #f3f4f6;
+        border: 4px solid #111827;
+        box-shadow: 12px 12px 0px #111827;
         overflow: hidden;
     }
 
@@ -56,7 +89,7 @@
 
     /* Left Side: Info */
     .contact-info {
-        background: linear-gradient(135deg, #064e3b, #059669);
+        background: #111827;
         color: white;
         padding: 48px;
         position: relative;
@@ -120,10 +153,11 @@
         width: 100%; 
         padding: 16px; 
         background: #f9fafb;
-        border: 2px solid transparent; 
+        border: 3px solid #e5e7eb; 
         border-radius: 16px;
-        font-family: inherit; font-size: 15px; color: #111827; 
+        font-family: inherit; font-size: 15px; color: #111827; font-weight: 600;
         transition: all 0.3s ease;
+        box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
     }
 
     .form-input::placeholder, .form-textarea::placeholder {
@@ -133,24 +167,27 @@
     .form-input:focus, .form-textarea:focus {
         outline: none; 
         background: white;
-        border-color: #34d399; 
-        box-shadow: 0 4px 12px rgba(52, 211, 153, 0.1);
+        border-color: #4f46e5; 
+        box-shadow: 4px 4px 0px #c7d2fe;
+        transform: translateY(-2px);
     }
 
     .btn-submit {
         display: inline-flex; 
         align-items: center; justify-content: center; gap: 8px;
-        width: 100%; padding: 16px; 
-        background: #111827;
-        color: white; border: none; border-radius: 16px; 
-        font-size: 16px; font-weight: 800;
-        cursor: pointer; transition: all 0.3s;
+        width: 100%; padding: 18px; 
+        background: #4f46e5;
+        color: white; border: 3px solid #111827; border-radius: 100px; 
+        font-size: 18px; font-weight: 900; letter-spacing: 0.5px;
+        cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 6px 6px 0px #111827;
+        margin-top: 10px;
     }
 
     .btn-submit:hover { 
-        background: #059669; 
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px -10px rgba(5, 150, 105, 0.4);
+        background: #4338ca; 
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0px #111827;
     }
 
     .alert-success {
@@ -172,12 +209,12 @@
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero-kontak">
     <div class="container" style="position:relative; z-index:2;">
-        <div style="display:inline-block; background:#ecfdf5; color:#059669; font-weight:800; font-size:14px; padding:6px 16px; border-radius:20px; margin-bottom:20px;">SAPA KAMI</div>
+        <div style="display:inline-block; background:#fff; color:#4f46e5; font-weight:900; font-size:15px; padding:8px 20px; border-radius:100px; margin-bottom:20px; box-shadow: 2px 2px 0px rgba(0,0,0,0.1);">📱 CONNECT WITH US</div>
         <h1 class="hero-kontak-title">
-            Mari Berbincang <span>Lebih Dekat</span>
+            Say <span>Hi! 👋</span>
         </h1>
         <p class="hero-kontak-desc">
-            Punya ide cemerlang, pertanyaan, atau ingin berkolaborasi terkait edukasi lingkungan? Jangan ragu untuk mengirimkan pesan!
+            Ada ide seru, pertanyaan, atau sekadar pengen kolab bareng? Jangan ragu buat drop pesan kamu di sini, mimin siap bales! 😎
         </p>
     </div>
 </section>
@@ -189,8 +226,8 @@
             
             <!-- INFO SIDE -->
             <div class="contact-info">
-                <h2 class="info-title">Informasi Kontak</h2>
-                <p class="info-desc">Kami selalu terbuka untuk saran dan diskusi yang membangun ekosistem lebih hijau.</p>
+                <h2 class="info-title">Let's Talk! 💬</h2>
+                <p class="info-desc">Mimin selalu seneng dapet notif dari kalian. Kuy saling sapa biar makin akrab!</p>
                 
                 <div class="info-item">
                     <div class="info-icon">📍</div>
@@ -204,7 +241,7 @@
                     <div class="info-icon">✉️</div>
                     <div>
                         <div style="font-size:12px; opacity:0.8; margin-bottom:2px;">Email Resmi</div>
-                        <div>halo@edusampah.desa.id</div>
+                        <div>knpakuhaji_2026@edusampah.desa.id</div>
                     </div>
                 </div>
 
@@ -218,7 +255,7 @@
                     </div>
                     <div>
                         <div style="font-size:12px; opacity:0.8; margin-bottom:2px;">Media Sosial</div>
-                        <div>@knpakuhaji_2026</div>
+                        <div>kknpakuhaji_2026</div>
                     </div>
                 </div>
             </div>
@@ -261,7 +298,7 @@
                     </div>
 
                     <button type="submit" class="btn-submit">
-                        Kirim Pesan Sekarang 🚀
+                        Kirim Pesan Sekarang 
                     </button>
                 </form>
             </div>

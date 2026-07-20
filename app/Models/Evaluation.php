@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluation extends Model
 {
     use HasFactory;
-    
-    protected $guarded = [];
+
+    // A submission has many answers
+    public function answers()
+    {
+        return $this->hasMany(EvaluationAnswer::class);
+    }
 }

@@ -5,32 +5,68 @@
 <style>
     /* ── HERO GALERI ── */
     .hero-galeri {
-        background: radial-gradient(circle at 100% 0%, #ecfdf5 0%, #ffffff 60%);
-        padding: 100px 0 60px;
+        background: linear-gradient(135deg, #a7f3d0 0%, #3b82f6 100%);
+        padding: 120px 0 100px;
         position: relative;
         overflow: hidden;
         text-align: center;
         border-bottom: 1px solid #f3f4f6;
     }
 
+    .hero-galeri::before {
+        content: "📸";
+        font-size: 80px;
+        position: absolute;
+        top: 20%; left: 8%;
+        opacity: 0.4;
+        transform: rotate(-20deg);
+        animation: bounceFloat 4s ease-in-out infinite;
+    }
+    .hero-galeri::after {
+        content: "✨";
+        font-size: 80px;
+        position: absolute;
+        bottom: 25%; right: 10%;
+        opacity: 0.5;
+        animation: pulseFade 3s infinite;
+    }
+
+    @keyframes bounceFloat {
+        0%, 100% { transform: translateY(0) rotate(-20deg); }
+        50% { transform: translateY(-20px) rotate(-10deg); }
+    }
+    @keyframes pulseFade {
+        0%, 100% { opacity: 0.3; transform: scale(0.8); }
+        50% { opacity: 0.7; transform: scale(1.1); }
+    }
+
     .hero-galeri-title {
         font-family: 'Nunito', sans-serif;
-        font-size: clamp(36px, 5vw, 56px);
+        font-size: clamp(40px, 6vw, 64px);
         font-weight: 900;
-        color: #111827;
+        color: #ffffff;
         margin-bottom: 16px;
+        text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
     }
 
     .hero-galeri-title span {
-        color: #059669;
+        color: #ffffff;
+        background: #2563eb;
+        padding: 4px 16px;
+        border-radius: 16px;
+        display: inline-block;
+        transform: rotate(-2deg);
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
     }
 
     .hero-galeri-desc {
-        font-size: 18px;
-        color: #6b7280;
+        font-size: 19px;
+        color: #ffffff;
         max-width: 600px;
         margin: 0 auto;
         line-height: 1.6;
+        font-weight: 600;
+        text-shadow: 1px 1px 0px rgba(0,0,0,0.1);
     }
 
     /* ── GALLERY GRID ── */
@@ -43,26 +79,35 @@
 
     .gallery-card {
         background: white;
-        border-radius: 24px;
+        border-radius: 20px;
+        padding: 12px;
         overflow: hidden;
         transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid #f3f4f6;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        border: 2px solid #e5e7eb;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
         position: relative;
         cursor: pointer;
+        display: flex;
+        flex-direction: column;
     }
 
-    .gallery-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 30px -10px rgba(5, 150, 105, 0.2);
+    .gallery-card:nth-child(even):hover {
+        transform: translateY(-8px) rotate(2deg) scale(1.02);
+        box-shadow: 0 20px 25px -5px rgba(59, 130, 246, 0.2);
+        border-color: #93c5fd;
+    }
+    .gallery-card:nth-child(odd):hover {
+        transform: translateY(-8px) rotate(-2deg) scale(1.02);
+        box-shadow: 0 20px 25px -5px rgba(16, 185, 129, 0.2);
         border-color: #a7f3d0;
     }
 
     .gallery-img-wrapper {
         position: relative;
         width: 100%;
-        padding-top: 75%; /* 4:3 Aspect Ratio */
+        padding-top: 100%; /* 1:1 Aspect Ratio / Square */
         overflow: hidden;
+        border-radius: 12px;
     }
 
     .gallery-img {
@@ -106,7 +151,7 @@
     }
 
     .gallery-info {
-        padding: 20px 24px;
+        padding: 16px 12px 8px;
         background: white;
         display: flex;
         align-items: center;
@@ -115,7 +160,7 @@
 
     .gallery-title {
         font-family: 'Nunito', sans-serif;
-        font-size: 18px;
+        font-size: 16px;
         font-weight: 800;
         color: #111827;
         margin: 0;
@@ -130,10 +175,12 @@
         color: #059669;
     }
 
-    /* ── CTA ── */
+    /* ── BRUTAL CTA ── */
     .modern-cta {
-        background: #111827;
-        border-radius: 32px;
+        background: #fca5a5;
+        border: 4px solid #111827;
+        box-shadow: 10px 10px 0px #111827;
+        border-radius: 24px;
         padding: 60px 40px;
         text-align: center;
         position: relative;
@@ -141,23 +188,22 @@
     }
 
     .modern-cta::before {
-        content: '';
+        content: '🔥';
         position: absolute;
-        width: 300px; height: 300px;
-        background: #059669;
-        border-radius: 50%;
-        filter: blur(80px);
-        top: -150px; left: -50px;
-        opacity: 0.5;
+        font-size: 120px;
+        top: -20px; left: -10px;
+        opacity: 0.2;
+        transform: rotate(-15deg);
     }
 
     .modern-cta-title {
         font-family: 'Nunito', sans-serif;
-        font-size: 32px;
+        font-size: clamp(32px, 5vw, 42px);
         font-weight: 900;
-        color: white;
+        color: #111827;
         margin-bottom: 16px;
         position: relative; z-index: 2;
+        text-shadow: 3px 3px 0px white;
     }
 
 </style>
@@ -168,12 +214,12 @@
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero-galeri">
     <div class="container" style="position:relative; z-index:2;">
-        <div style="display:inline-block; background:#ecfdf5; color:#059669; font-weight:800; font-size:14px; padding:6px 16px; border-radius:20px; margin-bottom:20px;">GALERI AKSI</div>
+        <div style="display:inline-block; background:#fff; color:#2563eb; font-weight:900; font-size:15px; padding:8px 20px; border-radius:100px; margin-bottom:20px; box-shadow: 2px 2px 0px rgba(0,0,0,0.1);">📷 Momen Keseruan Kita!</div>
         <h1 class="hero-galeri-title">
-            Potret <span>Aksi Nyata</span> Lingkungan
+            Potret <span>Aksi Nyata</span> Kita!
         </h1>
         <p class="hero-galeri-desc">
-            Kumpulan dokumentasi inspiratif dari berbagai kegiatan edukasi, praktik baik, dan aksi nyata pengelolaan sampah di lingkungan sekitar kita.
+            Liat keseruan aksi nyata temen-temen kita dalam menjaga lingkungan! Siapa tau ada foto kamu atau kelasmu nyempil di sini? 👀✨
         </p>
     </div>
 </section>
@@ -208,13 +254,13 @@
             </div>
         @endif
 
-        <!-- ── CTA SECTION ────────────────────────────────────────────── -->
+        <!-- ── BRUTAL CTA ────────────────────────────────────────────── -->
         <div class="modern-cta">
-            <h2 class="modern-cta-title">Punya Saran Untuk Kami?</h2>
-            <p style="font-size:16px; color:#9ca3af; max-width:500px; margin: 0 auto 30px; position:relative; z-index:2;">Kami sangat menghargai feedback dari Anda agar EduSampah terus memberikan konten edukasi yang berkualitas.</p>
+            <h2 class="modern-cta-title">Punya Ide Gila Buat Ngurangin Sampah? 🤯</h2>
+            <p style="font-size:18px; color:#111827; font-weight:700; max-width:550px; margin: 0 auto 30px; position:relative; z-index:2; line-height: 1.6;">Yuk ceritain ide atau saran kamu buat edukasi lingkungan yang lebih pecah dan seru buat temen-temen yang lain!</p>
             <div style="position:relative; z-index:2; display:flex; justify-content:center;">
-                <a href="{{ route('evaluasi') }}" style="background:#059669; color:white; padding:14px 28px; border-radius:12px; font-weight:800; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow: 0 4px 14px rgba(5, 150, 105, 0.4); transition: transform 0.3s;">
-                    📝 Isi Form Evaluasi
+                <a href="{{ route('evaluasi') }}" style="background:#fef08a; color:#111827; padding:16px 32px; border-radius:100px; font-weight:900; font-size: 18px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; border: 3px solid #111827; box-shadow: 5px 5px 0px #111827; transition: all 0.2s;" onmouseover="this.style.transform='translate(-2px, -2px)'; this.style.boxShadow='7px 7px 0px #111827';" onmouseout="this.style.transform='translate(0, 0)'; this.style.boxShadow='5px 5px 0px #111827';">
+                    📝 Drop Ide Kamu Di Sini!
                 </a>
             </div>
         </div>

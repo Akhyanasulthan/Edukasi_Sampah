@@ -72,17 +72,25 @@
         /* ── NAVBAR ─────────────────────────────────────────── */
         .navbar {
             position: fixed;
-            top: 0; left: 0; right: 0;
-            height: var(--navbar-h);
+            top: 20px; 
+            left: 50%;
+            transform: translateX(-50%);
+            width: calc(100% - 40px);
+            max-width: 1200px;
+            height: 76px;
             background: rgba(255,255,255,0.95);
             backdrop-filter: blur(12px);
-            border-bottom: 1px solid var(--green-100);
+            border: 3px solid #111827;
+            border-radius: 100px;
             z-index: 200;
-            transition: box-shadow var(--transition);
+            box-shadow: 6px 6px 0px #111827;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
         }
 
         .navbar.scrolled {
-            box-shadow: 0 2px 20px rgba(34,197,94,0.12);
+            top: 10px;
+            box-shadow: 4px 4px 0px #111827;
+            background: rgba(255,255,255,0.98);
         }
 
         .nav-container {
@@ -103,13 +111,25 @@
         }
 
         .nav-brand-icon {
-            width: 42px; height: 42px;
+            width: 48px; height: 48px;
             border-radius: 11px;
-            background: linear-gradient(135deg, var(--green-500), var(--green-700));
+            background: #ffffff;
             display: flex; align-items: center; justify-content: center;
-            font-size: 20px;
-            box-shadow: 0 2px 12px rgba(34,197,94,0.3);
+            border: 2px solid #111827;
+            box-shadow: 3px 3px 0px #111827;
             flex-shrink: 0;
+            transition: all 0.2s;
+            overflow: hidden;
+        }
+        .nav-brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .nav-brand:hover .nav-brand-icon {
+            transform: translate(-2px, -2px);
+            box-shadow: 5px 5px 0px #4ade80;
         }
 
         .nav-brand-text {
@@ -139,89 +159,101 @@
             display: flex;
             align-items: center;
             gap: 4px;
-            padding: 7px 13px;
-            border-radius: var(--radius-sm);
-            font-size: 13.5px;
-            font-weight: 600;
-            color: var(--gray-700);
+            padding: 8px 18px;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 800;
+            color: #111827;
             transition: all var(--transition);
             cursor: pointer;
             white-space: nowrap;
+            border: 2px solid transparent;
         }
 
         .nav-link-item:hover,
         .nav-link-item.active {
-            background: var(--green-50);
-            color: var(--green-700);
+            background: #fef08a;
+            border-color: #111827;
+            color: #111827;
+            box-shadow: 3px 3px 0px #111827;
+            transform: translateY(-2px);
         }
 
         /* Dropdown */
         .nav-dropdown {
             position: absolute;
-            top: calc(100% + 8px);
+            top: calc(100% + 12px);
             left: 50%;
-            transform: translateX(-50%);
-            background: var(--white);
-            border: 1px solid var(--green-100);
-            border-radius: var(--radius);
-            box-shadow: var(--shadow-lg);
+            transform: translateX(-50%) translateY(10px);
+            background: white;
+            border: 3px solid #111827;
+            border-radius: 20px;
+            box-shadow: 6px 6px 0px #111827;
             min-width: 240px;
-            padding: 8px;
+            padding: 12px;
             opacity: 0;
             pointer-events: none;
-            transition: all var(--transition);
-            transform-origin: top center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .nav-item:hover .nav-dropdown,
         .nav-item:focus-within .nav-dropdown {
             opacity: 1;
             pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
         }
 
         .dropdown-link {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 9px 12px;
-            border-radius: var(--radius-sm);
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-body);
-            transition: all var(--transition);
+            gap: 12px;
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 14px;
+            font-weight: 800;
+            color: #111827;
+            transition: all 0.2s;
+            border: 2px solid transparent;
+            margin-bottom: 4px;
         }
 
         .dropdown-link:hover {
-            background: var(--green-50);
-            color: var(--green-700);
+            background: #a7f3d0;
+            border-color: #111827;
+            transform: translateX(4px);
+            box-shadow: 3px 3px 0px #111827;
         }
 
         .dropdown-icon {
-            width: 30px; height: 30px;
+            width: 32px; height: 32px;
             border-radius: 8px;
             display: flex; align-items: center; justify-content: center;
-            font-size: 14px;
+            font-size: 16px;
             flex-shrink: 0;
+            border: 2px solid #111827;
         }
 
         .nav-cta {
             display: flex;
             align-items: center;
             gap: 8px;
-            padding: 9px 18px;
-            background: linear-gradient(135deg, var(--green-500), var(--green-600));
-            color: var(--white);
-            border-radius: var(--radius-sm);
-            font-size: 13.5px;
-            font-weight: 700;
+            padding: 10px 24px;
+            background: #a7f3d0;
+            color: #111827;
+            border: 3px solid #111827;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 900;
             transition: all var(--transition);
-            box-shadow: var(--shadow-green);
+            box-shadow: 4px 4px 0px #111827;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .nav-cta:hover {
-            background: linear-gradient(135deg, var(--green-600), var(--green-700));
-            transform: translateY(-1px);
-            box-shadow: 0 6px 24px rgba(34,197,94,0.35);
+            background: #fef08a;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #111827;
         }
 
         .hamburger {
@@ -245,15 +277,25 @@
 
         /* ── MAIN CONTENT ───────────────────────────────────── */
         .main-wrap {
-            padding-top: var(--navbar-h);
+            padding-top: 130px;
             min-height: 100vh;
         }
 
         /* ── FOOTER ─────────────────────────────────────────── */
         .footer {
-            background: var(--green-900);
-            color: rgba(255,255,255,0.85);
-            padding: 60px 0 0;
+            background: #111827;
+            color: white;
+            padding: 80px 0 0;
+            position: relative;
+            border-top: 6px solid #111827;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: -6px; left: 0; right: 0; height: 6px;
+            background: repeating-linear-gradient(45deg, #fef08a, #fef08a 10px, #111827 10px, #111827 20px);
+            z-index: 10;
         }
 
         .footer-container {
@@ -270,116 +312,138 @@
         }
 
         .footer-brand-icon {
-            width: 48px; height: 48px;
-            border-radius: 12px;
-            background: linear-gradient(135deg, var(--green-500), var(--green-400));
+            width: 60px; height: 60px;
+            border-radius: 14px;
+            background: #ffffff;
+            border: 2px solid white;
+            box-shadow: 4px 4px 0px #a7f3d0;
             display: flex; align-items: center; justify-content: center;
-            font-size: 22px;
-            margin-bottom: 14px;
+            margin-bottom: 24px;
+            overflow: hidden;
+        }
+        .footer-brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
         }
 
         .footer-brand-name {
             font-family: 'Nunito', sans-serif;
-            font-size: 20px;
+            font-size: 24px;
             font-weight: 900;
             color: var(--white);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 0px #000;
         }
 
         .footer-desc {
-            font-size: 13.5px;
+            font-size: 15px;
+            font-weight: 600;
             line-height: 1.7;
-            color: rgba(255,255,255,0.6);
-            margin-bottom: 20px;
+            color: #e5e7eb;
+            margin-bottom: 24px;
         }
 
         .footer-socials {
             display: flex;
-            gap: 10px;
+            gap: 12px;
         }
 
         .social-btn {
-            width: 36px; height: 36px;
-            border-radius: 9px;
-            background: rgba(255,255,255,0.08);
-            border: 1px solid rgba(255,255,255,0.12);
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: white;
+            border: 2px solid #111827;
+            box-shadow: 4px 4px 0px #fef08a;
             display: flex; align-items: center; justify-content: center;
-            font-size: 15px;
-            transition: all var(--transition);
+            font-size: 20px;
+            transition: all 0.2s;
+            text-decoration: none;
         }
 
         .social-btn:hover {
-            background: var(--green-600);
-            border-color: var(--green-500);
+            background: #a7f3d0;
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #f472b6;
         }
 
         .footer-heading {
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 15px;
+            font-weight: 900;
             text-transform: uppercase;
-            letter-spacing: 0.8px;
-            color: var(--green-400);
-            margin-bottom: 16px;
+            letter-spacing: 1px;
+            color: #fef08a;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 0px #000;
         }
 
         .footer-links {
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .footer-links a {
-            font-size: 13.5px;
-            color: rgba(255,255,255,0.6);
-            transition: color var(--transition);
+            font-size: 15px;
+            font-weight: 700;
+            color: white;
+            transition: all 0.2s;
+            display: inline-block;
         }
 
         .footer-links a:hover {
-            color: var(--green-400);
+            color: #a7f3d0;
+            transform: translateX(6px);
+            text-shadow: 2px 2px 0px #000;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 20px 0;
+            border-top: 2px dashed rgba(255,255,255,0.2);
+            padding: 24px 0;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            font-size: 12.5px;
-            color: rgba(255,255,255,0.4);
+            font-size: 14px;
+            font-weight: 600;
+            color: #9ca3af;
         }
 
         /* ── MOBILE NAV ─────────────────────────────────────── */
         .mobile-nav {
             display: none;
             position: fixed;
-            top: var(--navbar-h);
-            left: 0; right: 0;
+            top: 100px;
+            left: 20px; right: 20px;
             background: var(--white);
-            border-bottom: 1px solid var(--green-100);
-            box-shadow: var(--shadow-lg);
+            border: 3px solid #111827;
+            border-radius: 24px;
+            box-shadow: 8px 8px 0px #111827;
             z-index: 190;
-            max-height: calc(100vh - var(--navbar-h));
+            max-height: calc(100vh - 120px);
             overflow-y: auto;
-            padding: 16px;
+            padding: 20px;
         }
 
         .mobile-nav.open { display: block; }
 
         .mobile-nav-link {
             display: block;
-            padding: 10px 14px;
-            border-radius: var(--radius-sm);
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--text-body);
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 800;
+            color: #111827;
             transition: all var(--transition);
-            margin-bottom: 2px;
+            margin-bottom: 6px;
+            border: 2px solid transparent;
         }
 
         .mobile-nav-link:hover {
-            background: var(--green-50);
-            color: var(--green-700);
+            background: #fef08a;
+            border-color: #111827;
+            box-shadow: 3px 3px 0px #111827;
+            transform: translateY(-2px);
         }
 
         .mobile-section-label {
@@ -566,7 +630,9 @@
         <div class="nav-container">
             <!-- Brand -->
             <a href="{{ route('beranda') }}" class="nav-brand">
-                <div class="nav-brand-icon">🌿</div>
+                <div class="nav-brand-icon">
+                    <img src="{{ asset('images/logo_edusampah.png') }}" alt="Logo EduSampah">
+                </div>
                 <div>
                     <div class="nav-brand-text">EduSampah</div>
                     <div class="nav-brand-sub">Edukasi Lingkungan</div>
@@ -617,11 +683,13 @@
                         Video
                     </a>
                 </li>
+                @if($hasTips ?? false)
                 <li class="nav-item">
                     <a href="{{ route('tips') }}" class="nav-link-item {{ request()->routeIs('tips') ? 'active' : '' }}">
                         Tips
                     </a>
                 </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('kontak') }}" class="nav-link-item {{ request()->routeIs('kontak') ? 'active' : '' }}">
                         Kontak
@@ -632,7 +700,7 @@
             <!-- Right Actions -->
             <div class="nav-right" style="display:flex;align-items:center;gap:8px;">
                 <a href="{{ route('evaluasi') }}" class="nav-cta">
-                    ✏️ Evaluasi Diri
+                    📝 Cek Skill
                 </a>
             </div>
 
@@ -657,7 +725,9 @@
         <div class="mobile-section-label">Lainnya</div>
         <a href="{{ route('galeri') }}" class="mobile-nav-link">🖼️ Galeri Foto</a>
         <a href="{{ route('video') }}" class="mobile-nav-link">🎬 Video Edukasi</a>
+        @if($hasTips ?? false)
         <a href="{{ route('tips') }}" class="mobile-nav-link">💡 Tips Pengelolaan</a>
+        @endif
         <a href="{{ route('evaluasi') }}" class="mobile-nav-link" style="color:var(--green-700);font-weight:700;">✏️ Formulir Evaluasi</a>
         <a href="{{ route('kontak') }}" class="mobile-nav-link">📞 Kontak</a>
     </div>
@@ -672,7 +742,9 @@
         <div class="footer-container">
             <div class="footer-grid">
                 <div>
-                    <div class="footer-brand-icon">🌿</div>
+                    <div class="footer-brand-icon">
+                        <img src="{{ asset('images/logo_edusampah.png') }}" alt="Logo EduSampah">
+                    </div>
                     <div class="footer-brand-name">EduSampah</div>
                     <p class="footer-desc">
                         Platform edukasi pengelolaan sampah untuk mewujudkan lingkungan yang bersih, sehat, dan berkelanjutan bagi generasi mendatang.
@@ -706,7 +778,9 @@
                 <div>
                     <div class="footer-heading">Lainnya</div>
                     <ul class="footer-links">
+                        @if($hasTips ?? false)
                         <li><a href="{{ route('tips') }}">Tips Pengelolaan</a></li>
+                        @endif
                         <li><a href="{{ route('evaluasi') }}">Formulir Evaluasi</a></li>
                         <li><a href="{{ route('kontak') }}">Hubungi Kami</a></li>
                         <li><a href="/admin/login">Admin Login</a></li>

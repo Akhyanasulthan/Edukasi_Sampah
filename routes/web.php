@@ -24,6 +24,7 @@ Route::prefix('materi')->name('materi.')->group(function () {
 Route::get('/galeri', [PublicController::class, 'galeri'])->name('galeri');
 Route::get('/video', [PublicController::class, 'video'])->name('video');
 Route::get('/tips', [PublicController::class, 'tips'])->name('tips');
+Route::get('/tips/{slug}', [PublicController::class, 'tipsShow'])->name('tips.show');
 
 // Evaluasi
 Route::get('/evaluasi', [PublicController::class, 'evaluasi'])->name('evaluasi');
@@ -49,6 +50,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::resource('galleries', \App\Http\Controllers\Admin\GalleryController::class);
         Route::resource('tips', \App\Http\Controllers\Admin\TipController::class);
         Route::resource('contacts', \App\Http\Controllers\Admin\ContactController::class)->only(['index', 'destroy']);
+        
+        Route::resource('evaluation-questions', \App\Http\Controllers\Admin\EvaluationQuestionController::class)->except(['show']);
         
         Route::get('evaluations/form', [\App\Http\Controllers\Admin\EvaluationController::class, 'form'])->name('evaluations.form');
         Route::post('evaluations/form', [\App\Http\Controllers\Admin\EvaluationController::class, 'updateForm'])->name('evaluations.form.update');

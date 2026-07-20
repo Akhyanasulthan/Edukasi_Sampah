@@ -34,8 +34,9 @@ class EvaluationController extends Controller
      */
     public function index()
     {
-        $evaluations = Evaluation::latest()->get();
-        return view('admin.evaluations.index', compact('evaluations'));
+        $evaluations = Evaluation::with('answers.question')->latest()->get();
+        $questions = \App\Models\EvaluationQuestion::orderBy('order_column', 'asc')->get();
+        return view('admin.evaluations.index', compact('evaluations', 'questions'));
     }
 
     /**
@@ -43,7 +44,9 @@ class EvaluationController extends Controller
      */
     public function export()
     {
-        $evaluations = Evaluation::all();
+        $evaluations = Evaluation::with('answers.question')->orderBy('created_at', 'asc')->get();
+        $questions = \App\Models\EvaluationQuestion::orderBy('order_column', 'asc')->get();
+        
         $filename = "evaluasi_sampah_" . date('Ymd_His') . ".csv";
 
         $headers = array(
@@ -54,29 +57,27 @@ class EvaluationController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = [
-            'ID', 'Nama', 'Usia', 'Asal Dusun/Kelas', 'Kejelasan Materi', 
-            'Peningkatan Pemahaman', 'Niat Memilah Sampah', 
-            'Pendapat Website', 'Saran', 'Tanggal'
-        ];
+        $columns = ['ID', 'Tanggal'];
+        foreach($questions as $q) {
+            $columns[] = $q->question;
+        }
 
-        $callback = function() use($evaluations, $columns) {
+        $callback = function() use($evaluations, $columns, $questions) {
             $file = fopen('php://output', 'w');
             fputcsv($file, $columns);
 
             foreach ($evaluations as $eval) {
-                fputcsv($file, [
+                $row = [
                     $eval->id,
-                    $eval->name,
-                    $eval->age,
-                    $eval->origin,
-                    $eval->material_clarity,
-                    $eval->understanding_improvement,
-                    $eval->intention_to_sort,
-                    $eval->website_opinion,
-                    $eval->suggestion,
                     $eval->created_at->format('Y-m-d H:i:s')
-                ]);
+                ];
+                
+                $answers = $eval->answers->keyBy('evaluation_question_id');
+                foreach($questions as $q) {
+                    $row[] = isset($answers[$q->id]) ? $answers[$q->id]->answer : '';
+                }
+
+                fputcsv($file, $row);
             }
             fclose($file);
         };

@@ -5,31 +5,66 @@
 <style>
     /* ── HERO EVALUASI ── */
     .hero-evaluasi {
-        background: radial-gradient(circle at 50% 100%, #ecfdf5 0%, #ffffff 60%);
-        padding: 100px 0 160px; /* Extra bottom padding to overlap card */
+        background: linear-gradient(135deg, #a7f3d0 0%, #34d399 100%);
+        padding: 120px 0 160px; /* Extra bottom padding to overlap card */
         position: relative;
         overflow: hidden;
         text-align: center;
     }
+    
+    .hero-evaluasi::before {
+        content: "🌱";
+        font-size: 80px;
+        position: absolute;
+        top: 15%;
+        left: 10%;
+        opacity: 0.3;
+        transform: rotate(-15deg);
+        animation: float 6s ease-in-out infinite;
+    }
+    .hero-evaluasi::after {
+        content: "♻️";
+        font-size: 100px;
+        position: absolute;
+        bottom: 25%;
+        right: 8%;
+        opacity: 0.25;
+        transform: rotate(20deg);
+        animation: float 8s ease-in-out infinite reverse;
+    }
+    
+    @keyframes float {
+        0% { transform: translateY(0) rotate(-15deg); }
+        50% { transform: translateY(-20px) rotate(-5deg); }
+        100% { transform: translateY(0) rotate(-15deg); }
+    }
 
     .hero-evaluasi-title {
         font-family: 'Nunito', sans-serif;
-        font-size: clamp(36px, 5vw, 56px);
+        font-size: clamp(40px, 6vw, 64px);
         font-weight: 900;
-        color: #111827;
+        color: #064e3b;
         margin-bottom: 16px;
+        text-shadow: 2px 2px 0px rgba(255,255,255,0.4);
     }
 
     .hero-evaluasi-title span {
-        color: #059669;
+        color: #fff;
+        background: #059669;
+        padding: 4px 16px;
+        border-radius: 16px;
+        display: inline-block;
+        transform: rotate(-2deg);
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.15);
     }
 
     .hero-evaluasi-desc {
-        font-size: 18px;
-        color: #6b7280;
+        font-size: 19px;
+        color: #064e3b;
         max-width: 650px;
         margin: 0 auto;
         line-height: 1.6;
+        font-weight: 600;
     }
 
     /* ── EVALUASI SECTION ── */
@@ -41,17 +76,18 @@
     }
 
     .eval-card {
-        background: white;
-        border-radius: 32px;
-        box-shadow: 0 20px 40px -15px rgba(0,0,0,0.05);
-        border: 1px solid #f3f4f6;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        border-radius: 40px;
+        box-shadow: 0 25px 50px -12px rgba(0,0,0,0.15);
+        border: 2px solid #fff;
         padding: 48px;
         max-width: 800px;
         margin: 0 auto;
     }
 
     @media (max-width: 600px) {
-        .eval-card { padding: 32px 24px; }
+        .eval-card { padding: 32px 24px; border-radius: 32px; }
     }
 
     .form-group { margin-bottom: 24px; }
@@ -93,18 +129,19 @@
     .btn-submit {
         display: inline-flex; 
         align-items: center; justify-content: center; gap: 8px;
-        width: 100%; padding: 18px; 
-        background: #111827;
-        color: white; border: none; border-radius: 16px; 
-        font-size: 16px; font-weight: 800;
-        cursor: pointer; transition: all 0.3s;
+        width: 100%; padding: 20px; 
+        background: #10b981;
+        color: white; border: none; border-radius: 100px; 
+        font-size: 20px; font-weight: 900; letter-spacing: 0.5px;
+        cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         margin-top: 16px;
+        box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.5);
     }
 
     .btn-submit:hover { 
         background: #059669; 
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px -10px rgba(5, 150, 105, 0.4);
+        transform: translateY(-4px) scale(1.02);
+        box-shadow: 0 20px 30px -10px rgba(5, 150, 105, 0.6);
     }
 
     .alert-success {
@@ -143,6 +180,92 @@
         .form-grid-3 { grid-template-columns: 1fr; }
     }
 
+    /* ── QUIZ STYLES ── */
+    .question-box {
+        background: #ffffff;
+        border: 3px solid #f3f4f6;
+        border-radius: 24px;
+        padding: 32px;
+        margin-bottom: 32px;
+        box-shadow: 4px 4px 0px #e5e7eb;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .question-box:hover {
+        border-color: #34d399;
+        box-shadow: 6px 6px 0px #a7f3d0;
+        transform: translateY(-4px);
+    }
+    .question-number {
+        display: inline-block;
+        background: #10b981;
+        color: white;
+        font-weight: 800;
+        font-size: 14px;
+        padding: 6px 16px;
+        border-radius: 100px;
+        margin-bottom: 20px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 2px 2px 0px #047857;
+    }
+    .question-title {
+        font-size: 20px;
+        font-weight: 800;
+        color: #111827;
+        margin-bottom: 24px;
+        line-height: 1.5;
+    }
+    .radio-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    .radio-option {
+        position: relative;
+    }
+    .radio-option input {
+        display: none;
+    }
+    .radio-label {
+        display: flex;
+        align-items: center;
+        padding: 18px 24px;
+        background: #f9fafb;
+        border: 2px solid #e5e7eb;
+        border-radius: 16px;
+        font-weight: 700;
+        font-size: 16px;
+        color: #4b5563;
+        cursor: pointer;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .radio-label::before {
+        content: '';
+        display: inline-block;
+        width: 22px;
+        height: 22px;
+        border: 2px solid #d1d5db;
+        border-radius: 50%;
+        margin-right: 14px;
+        transition: all 0.2s ease;
+        flex-shrink: 0;
+    }
+    .radio-option input:checked + .radio-label {
+        background: #f0fdf4;
+        border-color: #10b981;
+        color: #047857;
+        box-shadow: 0 4px 12px rgba(16, 185, 129, 0.15);
+        transform: scale(1.01);
+    }
+    .radio-option input:checked + .radio-label::before {
+        border-color: #10b981;
+        background-color: #10b981;
+        box-shadow: inset 0 0 0 4px #f0fdf4;
+    }
+    .radio-option input:hover + .radio-label {
+        border-color: #34d399;
+    }
+
 </style>
 @endpush
 
@@ -151,12 +274,12 @@
 <!-- ── HERO ─────────────────────────────────────────────────────── -->
 <section class="hero-evaluasi">
     <div class="container" style="position:relative; z-index:2;">
-        <div style="display:inline-block; background:#fef3c7; color:#d97706; font-weight:800; font-size:14px; padding:6px 16px; border-radius:20px; margin-bottom:20px;">KUIS & EVALUASI</div>
+        <div style="display:inline-block; background:#fff; color:#059669; font-weight:900; font-size:15px; padding:8px 20px; border-radius:100px; margin-bottom:20px; box-shadow: 2px 2px 0px rgba(0,0,0,0.1);">🔥 KUIS & CHALLENGE</div>
         <h1 class="hero-evaluasi-title">
-            Uji <span>Pemahamanmu!</span>
+            Uji <span>Skil Memilahmu!</span>
         </h1>
         <p class="hero-evaluasi-desc">
-            Bantu kami menjadi lebih baik! Isi form evaluasi singkat ini untuk mengukur efektivitas program edukasi dan memberikan masukan yang membangun.
+            Udah sejauh mana nih ilmu kamu soal kelola sampah? Yuk buktikan pemahamanmu di kuis ini dan bantu kami bikin materi yang lebih seru lagi! 🚀
         </p>
     </div>
 </section>
@@ -190,131 +313,48 @@
                 <form action="{{ route('evaluasi.submit') }}" method="POST">
                     @csrf
                     
-                    <div class="form-grid-3">
-                        <div class="form-group">
-                            <label for="name" class="form-label">Nama Lengkap</label>
-                            <input type="text" id="name" name="name" class="form-input" value="{{ old('name') }}" placeholder="John Doe" required>
-                            @error('name') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
+                    @if($questions->isEmpty())
+                        <div class="closed-state">
+                            <div style="font-size:60px; margin-bottom:20px;">📝</div>
+                            <h3 style="font-family:'Nunito'; font-size:28px; font-weight:900; color:#111827; margin-bottom:12px;">Belum Ada Soal</h3>
+                            <p style="color:#6b7280; font-size:16px;">Admin belum menambahkan soal evaluasi. Silakan kembali lagi nanti.</p>
                         </div>
-
-                        <div class="form-group">
-                            <label for="age" class="form-label">Usia</label>
-                            <input type="number" id="age" name="age" class="form-input" value="{{ old('age') }}" placeholder="Contoh: 17" required min="5" max="100">
-                            @error('age') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="origin" class="form-label">Asal Instansi/Kelas <span style="font-weight:400;color:#9ca3af;">(Opsional)</span></label>
-                            <input type="text" id="origin" name="origin" class="form-input" value="{{ old('origin') }}" placeholder="Contoh: Kelas 11 MIPA">
-                            @error('origin') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="material_clarity" class="form-label">Apakah materi edukasi yang disampaikan mudah dipahami?</label>
-                        <select id="material_clarity" name="material_clarity" class="form-select" required>
-                            <option value="">-- Pilih Penilaian --</option>
-                            <option value="Sangat Mudah" {{ old('material_clarity') == 'Sangat Mudah' ? 'selected' : '' }}>Sangat Mudah</option>
-                            <option value="Mudah" {{ old('material_clarity') == 'Mudah' ? 'selected' : '' }}>Mudah</option>
-                            <option value="Cukup" {{ old('material_clarity') == 'Cukup' ? 'selected' : '' }}>Cukup</option>
-                            <option value="Sulit" {{ old('material_clarity') == 'Sulit' ? 'selected' : '' }}>Sulit</option>
-                        </select>
-                        @error('material_clarity') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="understanding_improvement" class="form-label">Apakah pemahamanmu mengenai pengelolaan sampah meningkat?</label>
-                        <select id="understanding_improvement" name="understanding_improvement" class="form-select" required>
-                            <option value="">-- Pilih Penilaian --</option>
-                            <option value="Ya" {{ old('understanding_improvement') == 'Ya' ? 'selected' : '' }}>Ya, lebih paham</option>
-                            <option value="Cukup" {{ old('understanding_improvement') == 'Cukup' ? 'selected' : '' }}>Cukup</option>
-                            <option value="Belum" {{ old('understanding_improvement') == 'Belum' ? 'selected' : '' }}>Belum</option>
-                        </select>
-                        @error('understanding_improvement') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="intention_to_sort" class="form-label">Seberapa besar niatmu untuk mulai memilah sampah setelah ini?</label>
-                        <select id="intention_to_sort" name="intention_to_sort" class="form-select" required>
-                            <option value="">-- Pilih Niat Anda --</option>
-                            <option value="Ya" {{ old('intention_to_sort') == 'Ya' ? 'selected' : '' }}>Sangat berniat, akan segera kulakukan!</option>
-                            <option value="Mungkin" {{ old('intention_to_sort') == 'Mungkin' ? 'selected' : '' }}>Mungkin, aku butuh persiapan</option>
-                            <option value="Belum" {{ old('intention_to_sort') == 'Belum' ? 'selected' : '' }}>Belum berniat</option>
-                        </select>
-                        @error('intention_to_sort') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="habit_frequency" class="form-label">Seberapa sering kamu membuang sampah pada tempatnya di sekolah/rumah?</label>
-                        <select id="habit_frequency" name="habit_frequency" class="form-select" required>
-                            <option value="">-- Pilih Frekuensi --</option>
-                            <option value="Selalu" {{ old('habit_frequency') == 'Selalu' ? 'selected' : '' }}>Selalu</option>
-                            <option value="Sering" {{ old('habit_frequency') == 'Sering' ? 'selected' : '' }}>Sering</option>
-                            <option value="Kadang-kadang" {{ old('habit_frequency') == 'Kadang-kadang' ? 'selected' : '' }}>Kadang-kadang</option>
-                            <option value="Jarang" {{ old('habit_frequency') == 'Jarang' ? 'selected' : '' }}>Jarang</option>
-                            <option value="Tidak Pernah" {{ old('habit_frequency') == 'Tidak Pernah' ? 'selected' : '' }}>Tidak Pernah</option>
-                        </select>
-                        @error('habit_frequency') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="knowledge_organic" class="form-label">Apakah kamu sudah bisa membedakan sampah organik dan anorganik dengan benar?</label>
-                        <select id="knowledge_organic" name="knowledge_organic" class="form-select" required>
-                            <option value="">-- Pilih Jawaban --</option>
-                            <option value="Ya sudah paham" {{ old('knowledge_organic') == 'Ya sudah paham' ? 'selected' : '' }}>Ya, sudah sangat paham</option>
-                            <option value="Masih bingung" {{ old('knowledge_organic') == 'Masih bingung' ? 'selected' : '' }}>Masih sering tertukar/bingung</option>
-                            <option value="Belum bisa" {{ old('knowledge_organic') == 'Belum bisa' ? 'selected' : '' }}>Sama sekali belum bisa</option>
-                        </select>
-                        @error('knowledge_organic') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="favorite_material" class="form-label">Jenis materi edukasi apa yang paling kamu sukai di website ini? <span style="font-weight:400;color:#9ca3af;">(Opsional)</span></label>
-                        <select id="favorite_material" name="favorite_material" class="form-select">
-                            <option value="">-- Pilih Materi Favorit --</option>
-                            <option value="Video Edukasi" {{ old('favorite_material') == 'Video Edukasi' ? 'selected' : '' }}>Video Edukasi</option>
-                            <option value="Artikel Teks" {{ old('favorite_material') == 'Artikel Teks' ? 'selected' : '' }}>Artikel Teks</option>
-                            <option value="Gambar/Galeri" {{ old('favorite_material') == 'Gambar/Galeri' ? 'selected' : '' }}>Gambar / Galeri</option>
-                            <option value="Tips Singkat" {{ old('favorite_material') == 'Tips Singkat' ? 'selected' : '' }}>Tips Singkat</option>
-                        </select>
-                        @error('favorite_material') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="facilities_rating" class="form-label">Apakah menurutmu fasilitas tempat sampah di sekitarmu sudah memadai?</label>
-                        <select id="facilities_rating" name="facilities_rating" class="form-select" required>
-                            <option value="">-- Penilaian Fasilitas --</option>
-                            <option value="Sangat Memadai" {{ old('facilities_rating') == 'Sangat Memadai' ? 'selected' : '' }}>Sangat Memadai (Ada di mana-mana)</option>
-                            <option value="Cukup" {{ old('facilities_rating') == 'Cukup' ? 'selected' : '' }}>Cukup (Ada tapi kadang jauh)</option>
-                            <option value="Kurang Memadai" {{ old('facilities_rating') == 'Kurang Memadai' ? 'selected' : '' }}>Kurang Memadai (Sangat sulit dicari)</option>
-                        </select>
-                        @error('facilities_rating') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="advocacy_likelihood" class="form-label">Seberapa besar kemungkinan kamu mengajak temanmu untuk ikut peduli lingkungan?</label>
-                        <select id="advocacy_likelihood" name="advocacy_likelihood" class="form-select" required>
-                            <option value="">-- Pilih Jawaban --</option>
-                            <option value="Sangat Mungkin" {{ old('advocacy_likelihood') == 'Sangat Mungkin' ? 'selected' : '' }}>Sangat Mungkin (Akan aku sebar luaskan!)</option>
-                            <option value="Mungkin" {{ old('advocacy_likelihood') == 'Mungkin' ? 'selected' : '' }}>Mungkin (Tergantung situasi)</option>
-                            <option value="Kurang Mungkin" {{ old('advocacy_likelihood') == 'Kurang Mungkin' ? 'selected' : '' }}>Kurang Mungkin</option>
-                        </select>
-                        @error('advocacy_likelihood') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="website_opinion" class="form-label">Apa pendapatmu tentang tampilan dan isi dari *website* ini?</label>
-                        <textarea id="website_opinion" name="website_opinion" class="form-textarea" rows="4" placeholder="Kesan, tampilan, atau fitur favorit yang kamu temukan di website ini...">{{ old('website_opinion') }}</textarea>
-                        @error('website_opinion') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="suggestion" class="form-label">Ada saran kegiatan atau materi seru untuk edukasi berikutnya?</label>
-                        <textarea id="suggestion" name="suggestion" class="form-textarea" rows="4" placeholder="Tuliskan ide cemerlangmu di sini...">{{ old('suggestion') }}</textarea>
-                        @error('suggestion') <div style="color:#ef4444; font-size:13px; margin-top:6px; font-weight:600;">{{ $message }}</div> @enderror
-                    </div>
-
-                    <button type="submit" class="btn-submit">Kirim Evaluasi Sekarang 🚀</button>
+                    @else
+                        @foreach($questions as $index => $q)
+                            <div class="question-box">
+                                <div class="question-number">Soal {{ $index + 1 }}</div>
+                                <div class="question-title">{{ $q->question }}</div>
+                                
+                                @if($q->type == 'text')
+                                    <input type="text" id="question_{{ $q->id }}" name="answers[{{ $q->id }}]" class="form-input" placeholder="Ketik jawabanmu di sini..." value="{{ old('answers.'.$q->id) }}" required>
+                                
+                                @elseif($q->type == 'number')
+                                    <input type="number" id="question_{{ $q->id }}" name="answers[{{ $q->id }}]" class="form-input" placeholder="Masukkan angka..." value="{{ old('answers.'.$q->id) }}" required>
+                                
+                                @elseif($q->type == 'radio')
+                                    <div class="radio-grid">
+                                        @if($q->options)
+                                            @foreach($q->options as $optIndex => $option)
+                                                <label class="radio-option">
+                                                    <input type="radio" name="answers[{{ $q->id }}]" value="{{ $option }}" {{ old('answers.'.$q->id) == $option ? 'checked' : '' }} required>
+                                                    <span class="radio-label">{{ $option }}</span>
+                                                </label>
+                                            @endforeach
+                                        @endif
+                                    </div>
+                                
+                                @elseif($q->type == 'textarea')
+                                    <textarea id="question_{{ $q->id }}" name="answers[{{ $q->id }}]" class="form-textarea" rows="4" placeholder="Ketik jawaban panjangmu di sini..." required>{{ old('answers.'.$q->id) }}</textarea>
+                                @endif
+                                
+                                @error('answers.'.$q->id) 
+                                    <div style="color:#ef4444; font-size:13px; margin-top:12px; font-weight:600;">{{ $message }}</div> 
+                                @enderror
+                            </div>
+                        @endforeach
+                        
+                        <button type="submit" class="btn-submit" style="margin-top:20px; padding:20px; font-size:18px;">Submit Jawaban </button>
+                    @endif
                 </form>
             @endif
         </div>

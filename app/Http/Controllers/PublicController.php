@@ -11,6 +11,9 @@ class PublicController extends Controller
         // Bagikan data materi ke semua tampilan (untuk Navbar dan Footer)
         $materials = \App\Models\Material::where('is_published', true)->get();
         \Illuminate\Support\Facades\View::share('globalMaterials', $materials);
+
+        $hasTips = \App\Models\Tip::where('is_published', true)->exists();
+        \Illuminate\Support\Facades\View::share('hasTips', $hasTips);
     }
 
     public function beranda()
@@ -54,10 +57,17 @@ class PublicController extends Controller
         return view('public.tips', compact('tips'));
     }
 
+    public function tipsShow($slug)
+    {
+        $tip = \App\Models\Tip::where('slug', $slug)->where('is_published', true)->firstOrFail();
+        return view('public.tips_show', compact('tip'));
+    }
+
     public function evaluasi()
     {
         $isOpen = \Illuminate\Support\Facades\Cache::get('evaluation_form_enabled', true);
-        return view('public.evaluasi', compact('isOpen'));
+        $questions = \App\Models\EvaluationQuestion::where('is_active', true)->orderBy('order_column', 'asc')->get();
+        return view('public.evaluasi', compact('isOpen', 'questions'));
     }
 
     public function evaluasiSubmit(Request $request)
@@ -67,29 +77,36 @@ class PublicController extends Controller
             return back()->with('error', 'Mohon maaf, form evaluasi sedang ditutup.');
         }
 
+        // We only require that 'answers' array is present if there are active questions.
+        // We will validate individual answers below.
         $request->validate([
-            'name' => 'required|string|max:255',
-            'age' => 'required|integer|min:5|max:100',
-            'origin' => 'nullable|string|max:255',
-            'material_clarity' => 'required|in:Sangat Mudah,Mudah,Cukup,Sulit',
-            'understanding_improvement' => 'required|in:Ya,Cukup,Belum',
-            'intention_to_sort' => 'required|in:Ya,Mungkin,Belum',
-            'habit_frequency' => 'required|in:Selalu,Sering,Kadang-kadang,Jarang,Tidak Pernah',
-            'knowledge_organic' => 'required|in:Ya sudah paham,Masih bingung,Belum bisa',
-            'favorite_material' => 'nullable|string|max:255',
-            'facilities_rating' => 'required|in:Sangat Memadai,Cukup,Kurang Memadai',
-            'advocacy_likelihood' => 'required|in:Sangat Mungkin,Mungkin,Kurang Mungkin',
-            'website_opinion' => 'nullable|string',
-            'suggestion' => 'nullable|string',
+            'answers' => 'nullable|array'
         ]);
 
-        \App\Models\Evaluation::create($request->only([
-            'name', 'age', 'origin', 'material_clarity', 
-            'understanding_improvement', 'intention_to_sort', 
-            'habit_frequency', 'knowledge_organic', 'favorite_material',
-            'facilities_rating', 'advocacy_likelihood',
-            'website_opinion', 'suggestion'
-        ]));
+        $activeQuestions = \App\Models\EvaluationQuestion::where('is_active', true)->get();
+        $validationRules = [];
+        $validationMessages = [];
+
+        foreach ($activeQuestions as $question) {
+            $validationRules['answers.' . $question->id] = 'required';
+            $validationMessages['answers.' . $question->id . '.required'] = 'Pertanyaan "' . $question->question . '" wajib diisi.';
+        }
+
+        $request->validate($validationRules, $validationMessages);
+
+        // Create the submission wrapper
+        $evaluation = \App\Models\Evaluation::create([]);
+
+        // Save individual answers
+        if ($request->has('answers')) {
+            foreach ($request->answers as $question_id => $answer) {
+                \App\Models\EvaluationAnswer::create([
+                    'evaluation_id' => $evaluation->id,
+                    'evaluation_question_id' => $question_id,
+                    'answer' => $answer
+                ]);
+            }
+        }
 
         return back()->with('success', 'Terima kasih atas partisipasi Anda dalam evaluasi ini.');
     }

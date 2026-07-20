@@ -7,17 +7,18 @@
 <style>
     /* ── HERO ── */
     .hero {
-        background: radial-gradient(circle at 100% 0%, #d1fae5 0%, #f0fdf4 40%, #ffffff 100%);
+        background: linear-gradient(135deg, #dcfce7 0%, #fef08a 100%);
         padding: 100px 0 120px;
         position: relative;
         overflow: hidden;
+        border-bottom: 3px solid #111827;
     }
 
     .hero::after {
         content: '';
         position: absolute;
         bottom: 0; left: 0; right: 0; height: 150px;
-        background: linear-gradient(to top, #ffffff, transparent);
+        background: linear-gradient(to top, rgba(255,255,255,1), transparent);
         z-index: 1;
     }
 
@@ -37,33 +38,37 @@
         display: inline-flex;
         align-items: center;
         gap: 8px;
-        background: #ecfdf5;
-        color: #059669;
-        border: 1px solid #a7f3d0;
-        border-radius: 30px;
-        padding: 6px 16px;
-        font-size: 13px;
-        font-weight: 800;
+        background: #111827;
+        color: white;
+        border-radius: 100px;
+        padding: 8px 20px;
+        font-size: 14px;
+        font-weight: 900;
         margin-bottom: 24px;
         text-transform: uppercase;
         letter-spacing: 1px;
+        box-shadow: 4px 4px 0px rgba(0,0,0,0.3);
     }
 
     .hero-title {
         font-family: 'Nunito', sans-serif;
-        font-size: clamp(38px, 5vw, 64px);
+        font-size: clamp(40px, 6vw, 72px);
         font-weight: 900;
         color: #111827;
         line-height: 1.1;
         margin-bottom: 24px;
         letter-spacing: -1px;
+        text-shadow: 3px 3px 0px white;
     }
 
     .hero-title span {
-        color: #059669;
-        background: linear-gradient(135deg, #059669, #10b981);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: white;
+        background: #16a34a;
+        padding: 0 16px;
+        border-radius: 16px;
+        display: inline-block;
+        transform: rotate(-2deg);
+        box-shadow: 4px 4px 0px #111827;
     }
 
     .hero-desc {
@@ -78,40 +83,40 @@
 
     .btn-hero {
         font-family: 'Nunito', sans-serif;
-        font-size: 16px;
-        font-weight: 800;
-        padding: 16px 32px;
-        border-radius: 16px;
-        transition: all 0.3s ease;
+        font-size: 18px;
+        font-weight: 900;
+        padding: 16px 36px;
+        border-radius: 100px;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         text-decoration: none;
         display: inline-flex;
         align-items: center;
         gap: 10px;
+        border: 3px solid #111827;
+        box-shadow: 6px 6px 0px #111827;
     }
 
     .btn-hero-primary {
-        background: #059669;
-        color: white;
-        box-shadow: 0 10px 25px -5px rgba(5, 150, 105, 0.4);
+        background: #4ade80;
+        color: #111827;
     }
     .btn-hero-primary:hover {
-        background: #047857;
-        transform: translateY(-3px);
-        box-shadow: 0 15px 35px -5px rgba(5, 150, 105, 0.5);
+        background: #fef08a;
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0px #111827;
     }
 
     .btn-hero-outline {
         background: white;
-        color: #1f2937;
-        border: 2px solid #e5e7eb;
+        color: #111827;
     }
     .btn-hero-outline:hover {
-        border-color: #059669;
-        color: #059669;
-        transform: translateY(-3px);
+        background: #e5e7eb;
+        transform: translate(2px, 2px);
+        box-shadow: 4px 4px 0px #111827;
     }
 
-    /* Glassmorphism Visuals */
+    /* Visuals */
     .hero-visual {
         position: relative;
         height: 400px;
@@ -119,12 +124,10 @@
 
     .glass-card {
         position: absolute;
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(20px);
-        -webkit-backdrop-filter: blur(20px);
-        border: 1px solid rgba(255, 255, 255, 0.5);
-        border-radius: 24px;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+        background: white;
+        border: 4px solid #111827;
+        border-radius: 32px;
+        box-shadow: 12px 12px 0px #111827;
         padding: 30px;
         text-align: center;
         animation: floatY 6s ease-in-out infinite;
@@ -133,8 +136,7 @@
     .glass-main {
         top: 20px; left: 0; right: 0;
         z-index: 2;
-        border-top: 2px solid rgba(255, 255, 255, 0.8);
-        border-left: 2px solid rgba(255, 255, 255, 0.8);
+        background: #fef08a;
     }
 
     .glass-float-1 {
@@ -143,8 +145,12 @@
         z-index: 3;
         animation-delay: 1s;
         display: flex; align-items: center; gap: 12px;
-        font-weight: 800;
-        color: #059669;
+        font-weight: 900;
+        color: #111827;
+        background: #a7f3d0;
+        border-radius: 100px;
+        border: 3px solid #111827;
+        box-shadow: 6px 6px 0px #111827;
     }
 
     .glass-float-2 {
@@ -153,8 +159,12 @@
         z-index: 3;
         animation-delay: 2.5s;
         display: flex; align-items: center; gap: 12px;
-        font-weight: 800;
-        color: #111827;
+        font-weight: 900;
+        color: white;
+        background: #4f46e5;
+        border-radius: 100px;
+        border: 3px solid #111827;
+        box-shadow: 6px 6px 0px #111827;
     }
 
     @keyframes floatY {
@@ -177,23 +187,23 @@
         padding: 36px;
         position: relative;
         overflow: hidden;
-        border: 1px solid #f3f4f6;
-        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 4px solid #111827;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        box-shadow: 8px 8px 0px #111827;
     }
 
     .bento-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 20px 40px -10px rgba(5, 150, 105, 0.15);
-        border-color: #a7f3d0;
+        transform: translate(-4px, -4px);
+        box-shadow: 12px 12px 0px #fef08a;
+        border-color: #111827;
     }
 
     .bento-card-large {
         grid-column: span 2;
-        background: linear-gradient(135deg, #059669, #10b981);
+        background: #10b981;
         color: white;
     }
 
@@ -243,9 +253,10 @@
 
     .materi-preview-card {
         background: white;
-        border-radius: 20px;
+        border-radius: 24px;
         padding: 24px;
-        border: 1px solid #f3f4f6;
+        border: 3px solid #111827;
+        box-shadow: 6px 6px 0px #e5e7eb;
         transition: all 0.3s;
         text-decoration: none;
         color: inherit;
@@ -255,9 +266,9 @@
     }
 
     .materi-preview-card:hover {
-        border-color: #34d399;
-        box-shadow: 0 10px 20px -5px rgba(0, 0, 0, 0.05);
-        transform: translateY(-3px);
+        border-color: #111827;
+        box-shadow: 8px 8px 0px #4ade80;
+        transform: translate(-2px, -2px);
     }
 
     .materi-icon-box {
@@ -286,20 +297,20 @@
 
     .modern-tip-card {
         background: white;
-        border: 1px solid #f3f4f6;
-        border-radius: 20px;
+        border: 3px solid #111827;
+        border-radius: 24px;
         padding: 24px;
         display: flex;
         align-items: center;
         gap: 20px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        box-shadow: 6px 6px 0px #e5e7eb;
         transition: all 0.3s;
     }
 
     .modern-tip-card:hover {
-        transform: translateX(10px);
-        border-color: #34d399;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        transform: translateX(10px) translateY(-2px);
+        border-color: #111827;
+        box-shadow: 8px 8px 0px #fef08a;
     }
 
     .tip-emoji-box {
@@ -311,10 +322,12 @@
         flex-shrink: 0;
     }
 
-    /* ── NEUMORPHIC CTA ── */
+    /* ── BRUTAL CTA ── */
     .modern-cta {
-        background: #111827;
-        border-radius: 40px;
+        background: #c4b5fd;
+        border: 4px solid #111827;
+        box-shadow: 12px 12px 0px #111827;
+        border-radius: 32px;
         padding: 80px 40px;
         text-align: center;
         position: relative;
@@ -322,24 +335,31 @@
     }
 
     .modern-cta::before {
-        content: '';
+        content: '❓';
         position: absolute;
-        width: 400px; height: 400px;
-        background: #059669;
-        border-radius: 50%;
-        filter: blur(100px);
-        top: -200px; left: 50%;
-        transform: translateX(-50%);
-        opacity: 0.5;
+        font-size: 150px;
+        top: -20px; left: -20px;
+        opacity: 0.2;
+        transform: rotate(-15deg);
+    }
+    
+    .modern-cta::after {
+        content: '💡';
+        position: absolute;
+        font-size: 150px;
+        bottom: -20px; right: -20px;
+        opacity: 0.2;
+        transform: rotate(15deg);
     }
 
     .modern-cta-title {
         font-family: 'Nunito', sans-serif;
-        font-size: clamp(32px, 4vw, 48px);
+        font-size: clamp(36px, 5vw, 56px);
         font-weight: 900;
-        color: white;
+        color: #111827;
         margin-bottom: 20px;
         position: relative; z-index: 2;
+        text-shadow: 3px 3px 0px white;
     }
 
     @media (max-width: 900px) {
@@ -360,16 +380,16 @@
 <section class="hero">
     <div class="hero-inner">
         <div>
-            <div class="hero-tag">🌟 Platform Generasi Hijau</div>
+            <div class="hero-tag">🌟 GENERASI HIJAU</div>
             <h1 class="hero-title">
-                Mulai Peduli <span>Lingkungan</span> dari Genggamanmu.
+                Bumi Cuma Satu! Yuk Mulai <span>Peduli</span> Sekarang.
             </h1>
             <p class="hero-desc">
                 Pelajari gaya hidup ramah lingkungan, cara memilah sampah dengan benar, dan jadilah bagian dari perubahan positif untuk masa depan.
             </p>
             <div class="hero-actions">
                 <a href="{{ route('materi.index') }}" class="btn-hero btn-hero-primary">
-                    Mulai Belajar <span></span>
+                    Mulai Belajar 
                 </a>
                 <a href="{{ route('tentang') }}" class="btn-hero btn-hero-outline">
                     Tentang Program
@@ -388,9 +408,9 @@
                 <p style="font-size: 15px; color:#4b5563;">Satu langkah kecil hari ini, untuk bumi yang lebih bersih esok hari.</p>
                 
                 <div style="margin-top: 24px; display:flex; gap:10px; justify-content:center;">
-                    <span style="background:#ecfdf5; color:#059669; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700;">Organik</span>
-                    <span style="background:#f3f4f6; color:#4b5563; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700;">Anorganik</span>
-                    <span style="background:#fee2e2; color:#b91c1c; padding:6px 12px; border-radius:20px; font-size:12px; font-weight:700;">B3</span>
+                    <span style="background:white; color:#111827; padding:8px 16px; border-radius:100px; font-size:13px; font-weight:900; border:2px solid #111827;">Organik</span>
+                    <span style="background:white; color:#111827; padding:8px 16px; border-radius:100px; font-size:13px; font-weight:900; border:2px solid #111827;">Anorganik</span>
+                    <span style="background:#fee2e2; color:#b91c1c; padding:8px 16px; border-radius:100px; font-size:13px; font-weight:900; border:2px solid #111827;">B3</span>
                 </div>
             </div>
 
@@ -501,15 +521,15 @@
     </div>
 </section>
 
-<!-- ── NEUMORPHIC CTA ─────────────────────────────────────────────── -->
+<!-- ── BRUTAL CTA ─────────────────────────────────────────────── -->
 <section class="section" style="padding-bottom:100px;">
     <div class="container">
         <div class="modern-cta">
-            <h2 class="modern-cta-title">Siap Ngetes Wawasan Lingkunganmu?</h2>
-            <p style="font-size:18px; color:#9ca3af; max-width:600px; margin: 0 auto 40px; position:relative; z-index:2;">Ikuti evaluasi singkat untuk melihat sejauh mana kamu memahami pentingnya pengelolaan sampah.</p>
+            <h2 class="modern-cta-title">Berani Uji Nyali Lingkunganmu? 🤨</h2>
+            <p style="font-size:20px; color:#111827; font-weight:700; max-width:600px; margin: 0 auto 40px; position:relative; z-index:2; line-height: 1.6;">Coba tes seberapa paham kamu soal persampahan. Tenang, ini bukan ujian sekolah, dan gak ngaruh ke nilai kok!</p>
             <div style="position:relative; z-index:2; display:flex; justify-content:center; gap:16px; flex-wrap:wrap;">
-                <a href="{{ route('evaluasi') }}" class="btn-hero" style="background:white; color:#111827;">📝 Mulai Evaluasi</a>
-                <a href="{{ route('kontak') }}" class="btn-hero" style="background:rgba(255,255,255,0.1); color:white; border:1px solid rgba(255,255,255,0.2);">Hubungi Kami</a>
+                <a href="{{ route('evaluasi') }}" class="btn-hero" style="background:#fef08a; color:#111827; font-size:18px;">📝 Mulai Tes Sekarang</a>
+                <a href="{{ route('kontak') }}" class="btn-hero" style="background:white; color:#111827; font-size:18px;">Tanya Mimin Dulu</a>
             </div>
         </div>
     </div>
