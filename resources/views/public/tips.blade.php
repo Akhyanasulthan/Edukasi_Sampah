@@ -261,7 +261,7 @@
                             {!! strip_tags($tip->content) !!}
                         </div>
                         <div class="read-more-wrapper">
-                            Baca Selengkapnya <span>→</span>
+                            Baca Selengkapnya <span></span>
                         </div>
                     </div>
                 </a>
