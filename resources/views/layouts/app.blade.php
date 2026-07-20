@@ -371,7 +371,9 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-logo">
-            <div class="sidebar-logo-icon">🌿</div>
+            <div class="sidebar-logo-icon" style="background: white; padding: 4px;">
+                <img src="{{ asset('images/logo_edusampah.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
+            </div>
             <div>
                 <div class="sidebar-logo-text">Admin Panel</div>
                 <div class="sidebar-logo-sub">EDUKASI SAMPAH</div>
@@ -477,8 +479,8 @@
             <!-- User Profile Dropdown / Topbar -->
             <div style="position: relative; display: inline-block;">
                 <a href="{{ route('admin.profile.edit') }}" class="topbar-profile" style="margin-right: 8px;">
-                    <div class="topbar-avatar">
-                        {{ strtoupper(substr(auth()->user()->name ?? 'U', 0, 1)) }}
+                    <div class="topbar-avatar" style="background: white; border: 2px solid var(--accent); padding: 2px;">
+                        <img src="{{ asset('images/logo_edusampah.png') }}" alt="Logo" style="width: 100%; height: 100%; object-fit: contain;">
                     </div>
                     <span class="topbar-username">{{ auth()->user()->name ?? 'Pengguna' }}</span>
                 </a>
