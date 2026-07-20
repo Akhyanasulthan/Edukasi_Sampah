@@ -68,3 +68,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
 Route::prefix('admin')->group(function () {
     require __DIR__.'/auth.php';
 });
+
+Route::get('/setup-admin-sekali-saja', function () {
+    \App\Models\User::updateOrCreate(
+        ['email' => 'admin@admin.com'], 
+        ['name' => 'Administrator', 'password' => bcrypt('password')]
+    );
+    return 'Berhasil! Akun admin berhasil dibuat. Silakan buka halaman /admin/login untuk masuk.';
+});
